@@ -5,7 +5,7 @@
 def function():
    return 1 + 4
 ```
-111На данный момент есть три основных клиента: `FoxRay`, `ShadowRocket` и `Streisand`.
+На данный момент есть три основных клиента: `FoxRay`, `ShadowRocket` и `Streisand`.
 
 ## Импорт конфигурации
 
