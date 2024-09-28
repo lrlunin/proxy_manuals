@@ -13,6 +13,7 @@
 sudo apt-get install pandoc pandoc-citeproc texlive-latex-full texlive-fonts-recommended texlive-extra-utils texlive-latex-extra make 
 ```
 
+>Для `mermaid` диаграмм нужны также `nodejs`, `npm`. Затем установить пакет [`mermaid-filter`](https://github.com/raghur/mermaid-filter) и опциально для `svg` внутри `pdf` файлов потребуется `rsvg-convert` в составе пакета `librsvg2-bin`.
 2. Выполнить комманды:
 
 ```bash

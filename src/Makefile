@@ -5,7 +5,15 @@ CURRENT_DATE := $(shell date -u +"%H:%M %d/%m/%Y%n UTC")
 %.pdf: %.md
 	@FILENAME=$(basename $<); \
 	echo "Converting $< to ../$@"; \
-	pandoc -V date="Создано $(CURRENT_DATE)" -V title="$$FILENAME" --filter=pandoc-citeproc --standalone --pdf-engine=xelatex -V mainfont='Roboto' header.md $< footer.md -o ../$@
+	pandoc -V date="Создано $(CURRENT_DATE)" \
+	-V title="$$FILENAME" \
+	--filter=pandoc-citeproc \
+	-F mermaid-filter \
+	--standalone \
+	--pdf-engine=xelatex \
+	-V mainfont='Roboto' \
+	-V monofont='Roboto Mono' \
+	header.md $< footer.md -o ../$@
 
 # List all .md files in the directory except README.md
 MD_FILES := $(filter-out header.md footer.md, $(wildcard *.md))
