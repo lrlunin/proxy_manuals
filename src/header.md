@@ -3,6 +3,7 @@ title: ""
 author: "Автор: Leonid Lunin"
 date: ""
 bibliography: resources.bibtex
+geometry: margin=2cm
 nocite: '@*'
 ---
 # Введение

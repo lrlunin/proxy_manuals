@@ -6,7 +6,7 @@ CURRENT_DATE := $(shell date -u +"%H:%M %d/%m/%Y%n UTC")
 	@FILENAME=$(basename $<); \
 	echo "Converting $< to ../$@"; \
 	pandoc -V date="Создано $(CURRENT_DATE)" \
-	-V title="$$FILENAME" \
+	-V title="Настройка прокси для $$FILENAME" \
 	--filter=pandoc-citeproc \
 	-F mermaid-filter \
 	--standalone \
