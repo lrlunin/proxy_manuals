@@ -62,7 +62,20 @@ geoip:private
 
 \pagebreak
 
-4. Жмём кнопку Custom route внизу и добавляем следующую конфигурацию:
+4. В квадрате Domain:Direct добавляем две строки:
+
+```
+google.ru
+google.com
+```
+
+\begin{center} 
+\includegraphics[width=0.7\textwidth]{imgs/nekoray_win_9.png}
+\end{center}
+
+Это необходимо, потому что я имел неудачу получить сервер с адресом, который буквально забанен в поиске Google. 
+
+5. Жмём кнопку Custom route внизу и добавляем следующую конфигурацию:
 
 ```json
 {
@@ -77,9 +90,9 @@ geoip:private
 }
 ```
 
-5. Жмём OK.
+6. Жмём OK в обоих окнах.
 
-6. Далее ставим галочку в поле Tun Mode и программа попросит перезапуститься с правами администратора.
+7. Далее ставим галочку в поле Tun Mode и программа попросит перезапуститься с правами администратора.
 
 \begin{center} 
 \includegraphics[width=0.7\textwidth]{imgs/nekoray_win_6.png}
