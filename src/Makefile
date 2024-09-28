@@ -3,8 +3,8 @@ CURRENT_DATE := $(shell date -u +"%H:%M %d/%m/%Y%n UTC")
 
 # Define a pattern rule to convert .md to .pdf
 %.pdf: %.md
-	@echo "Converting $< to pdfs/$@"
-	@pandoc -V date="Создано $(CURRENT_DATE)" --filter=pandoc-citeproc --standalone --pdf-engine=xelatex -V mainfont='Roboto' $< -o pdfs/$@
+	@echo "Converting $< to ../$@"
+	@pandoc -V date="Создано $(CURRENT_DATE)" --filter=pandoc-citeproc --standalone --pdf-engine=xelatex -V mainfont='Roboto' $< -o ../$@
 
 # List all .md files in the directory except README.md
 MD_FILES := $(filter-out README.md, $(wildcard *.md))
@@ -18,7 +18,7 @@ all: $(PDF_FILES)
 # Clean up the generated PDFs
 clean:
 	@echo "Cleaning up PDF files..."
-	@rm -f pdfs/*.pdf
+	@rm -f ../*.pdf
 
 # Print a message after all PDFs are created
 .PHONY: all clean
