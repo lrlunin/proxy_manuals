@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install jq
-      run: sudo apt update && sudo apt install jq
     - name: Send Telegram message with new files and get message ID
       id: send_telegram_message  # ID to reference this step's output
       env:
@@ -24,7 +22,8 @@ jobs:
           -F "android=@Android.pdf" \
           -F "macos=@MacOS.pdf" \
           -F "windows=@Windows.pdf")
-
+        
+        echo $RESPONSE
         MESSAGE_ID=$(echo "$RESPONSE" | jq -r '.result[0].message_id')
         echo "MESSAGE_ID=$MESSAGE_ID" >> $GITHUB_ENV
 
