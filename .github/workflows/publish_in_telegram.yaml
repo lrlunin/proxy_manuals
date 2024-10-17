@@ -9,6 +9,10 @@ on:
 jobs:
   post-and-pin:
     runs-on: ubuntu-latest
+    env:
+      TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+      CHAT_ID: ${{ secrets.CHAT_ID }}
+      LAST_PINNED_MESSAGE: ${{ vars.LAST_PINNED_MESSAGE }}
 
     steps:
     - name: Checkout repository
@@ -16,9 +20,6 @@ jobs:
 
     - name: Send Telegram message with new files and get message ID
       id: send_telegram_message  # ID to reference this step's output
-      env:
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        CHAT_ID: ${{ secrets.CHAT_ID }}
       run: |
         RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMediaGroup" \
           -F "chat_id=$CHAT_ID" \
@@ -33,7 +34,6 @@ jobs:
 
     - name: Unpin previous bot message
       env:
-        CHAT_ID: ${{ secrets.CHAT_ID }}
         LAST_PINNED_MESSAGE: ${{ vars.LAST_PINNED_MESSAGE }}
       if: steps.send_telegram_message.outcome == 'success' && ${{ vars.LAST_PINNED_MESSAGE }} != 0
       run: |
@@ -44,8 +44,6 @@ jobs:
     - name: Pin the sent message
       if: steps.send_telegram_message.outcome == 'success'
       env:
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        CHAT_ID: ${{ secrets.CHAT_ID }}
         MESSAGE_ID: ${{ env.MESSAGE_ID }}
         GH_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
