@@ -11,13 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
     - name: Send Telegram message with new files and get message ID
       id: send_telegram_message  # ID to reference this step's output
       env:
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
       run: |
-        RESPONSE=$(curl --verbose -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMediaGroup" -F "chat_id=$CHAT_ID" -F 'media=[{ "type": "document", "media": "attach://ios"}, {"type":"document", "media": "attach://android"}, {"type":"document", "media": "attach://macos"}, {"type":"document", "media": "attach://windows", "caption":"Обновлённые инструкции!"}]' -F "ios=@iOS.pdf" -F "android=@Android.pdf" -F "macos=@MacOS.pdf" -F "windows=@Windows.pdf")
+        RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMediaGroup" \
+          -F "chat_id=$CHAT_ID" \
+          -F 'media=[{ "type": "document", "media": "attach://ios"}, {"type":"document", "media": "attach://android"}, {"type":"document", "media": "attach://macos"}, {"type":"document", "media": "attach://windows", "caption":"Обновлённые инструкции!"}]' \
+          -F "ios=@iOS.pdf" \
+          -F "android=@Android.pdf" \
+          -F "macos=@MacOS.pdf" \
+          -F "windows=@Windows.pdf")
+        
         MESSAGE_ID=$(echo "$RESPONSE" | jq -r '.result[0].message_id')
         echo "MESSAGE_ID=$MESSAGE_ID" >> $GITHUB_ENV
 
@@ -29,6 +39,6 @@ jobs:
         MESSAGE_ID: ${{ env.MESSAGE_ID }}
       run: |
         curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/pinChatMessage" \
-          -d "chat_id=${CHAT_ID}" \
-          -d "message_id=${MESSAGE_ID}" \
+          -d "chat_id=$CHAT_ID" \
+          -d "message_id=$MESSAGE_ID" \
           -d "disable_notification=true"
