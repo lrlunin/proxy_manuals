@@ -31,14 +31,26 @@ jobs:
         MESSAGE_ID=$(echo "$RESPONSE" | jq -r '.result[0].message_id')
         echo "MESSAGE_ID=$MESSAGE_ID" >> $GITHUB_ENV
 
+    - name: Unpin previous bot message
+      env:
+        LAST_PINNED_MESSAGE: ${{ vars.LAST_PINNED_MESSAGE }}
+      if: steps.send_telegram_message.outcome == 'success'
+      if: ${{ vars.LAST_PINNED_MESSAGE }} != 0
+      run: |
+        curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/unpinChatMessage" \
+          -d "chat_id=$CHAT_ID" \
+          -d "message_id=$LAST_PINNED_MESSAGE"
+
     - name: Pin the sent message
-      if: success()  # Run only if the previous step succeeded
+      if: steps.send_telegram_message.outcome == 'success'
       env:
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         CHAT_ID: ${{ secrets.CHAT_ID }}
         MESSAGE_ID: ${{ env.MESSAGE_ID }}
+        GH_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/pinChatMessage" \
           -d "chat_id=$CHAT_ID" \
           -d "message_id=$MESSAGE_ID" \
           -d "disable_notification=true"
+        gh variable set LAST_PINNED_MESSAGE --body "$MESSAGE_ID"
