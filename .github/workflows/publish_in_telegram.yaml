@@ -1,6 +1,8 @@
 name: Update Generated File and Post to Telegram
 
 on:
+  push:
+    branch: main
   release:
     types: [published]  # Trigger only when a release is published
 
