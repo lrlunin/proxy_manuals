@@ -21,7 +21,7 @@ jobs:
       run: |
         RESPONSE=$(curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMediaGroup" \
           -F "chat_id=$CHAT_ID" \
-          -F 'media=[{ "type": "document", "media": "attach://ios"}, {"type":"document", "media": "attach://android"}, {"type":"document", "media": "attach://macos"}, {"type":"document", "media": "attach://windows", "caption":"Обновлённые инструкции!"}]' \
+          -F 'media=[{ "type": "document", "media": "attach://ios"}, {"type":"document", "media": "attach://android"}, {"type":"document", "media": "attach://macos"}, {"type":"document", "media": "attach://windows", "parse_mode":"markdown", "caption":"Обновлённые инструкции для всех платформ!\n\n_Отправленно автоматически из GitHub Workflow_"}]' \
           -F "ios=@iOS.pdf" \
           -F "android=@Android.pdf" \
           -F "macos=@MacOS.pdf" \

@@ -14,7 +14,7 @@
 # Настройка клиента ShadowRocket
 ## Импорт конфигурации сервера
 
-Обратитесь ко мне в личных сообщениях, и я сообщу вам ваши уникальные ключи для подключения к прокси-серверу.
+Обратитесь ко мне в личных сообщениях, и я сообщу вам ваши уникальные ключи для подключения к прокси-серверу. Ключи обычно начинаются с `vless://` или `ss://`.
 
 Далее пошагово:
 
@@ -40,7 +40,7 @@
 
 2. Скопируйте ссылку
 ```
-https://raw.githubusercontent.com/lrlunin/shadowrocket-config/refs/heads/main/lunin_1.conf
+https://raw.githubusercontent.com/lrlunin/shadowrocket-config/refs/heads/main/lunin_2.conf
 ```
 в буфер обмена.
 
