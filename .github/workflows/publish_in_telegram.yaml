@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install jq
+      run: sudo apt update && sudo apt install jq
     - name: Send Telegram message with new files and get message ID
       id: send_telegram_message  # ID to reference this step's output
       env:
