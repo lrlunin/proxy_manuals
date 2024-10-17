@@ -33,6 +33,7 @@ jobs:
 
     - name: Unpin previous bot message
       env:
+        CHAT_ID: ${{ secrets.CHAT_ID }}
         LAST_PINNED_MESSAGE: ${{ vars.LAST_PINNED_MESSAGE }}
       if: steps.send_telegram_message.outcome == 'success' && ${{ vars.LAST_PINNED_MESSAGE }} != 0
       run: |
