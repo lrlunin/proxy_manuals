@@ -34,8 +34,7 @@ jobs:
     - name: Unpin previous bot message
       env:
         LAST_PINNED_MESSAGE: ${{ vars.LAST_PINNED_MESSAGE }}
-      if: steps.send_telegram_message.outcome == 'success'
-      if: ${{ vars.LAST_PINNED_MESSAGE }} != 0
+      if: steps.send_telegram_message.outcome == 'success' && ${{ vars.LAST_PINNED_MESSAGE }} != 0
       run: |
         curl -s -X POST "https://api.telegram.org/bot$TG_BOT_TOKEN/unpinChatMessage" \
           -d "chat_id=$CHAT_ID" \
