@@ -38,7 +38,11 @@
 \includegraphics[width=0.4\textwidth]{imgs/shadowrocket_1.png}
 \end{center}
 
-2. Скопируйте ссылку `https://raw.githubusercontent.com/lrlunin/shadowrocket-config/refs/heads/main/lunin_1.conf` в буфер обмена.
+2. Скопируйте ссылку
+```
+https://raw.githubusercontent.com/lrlunin/shadowrocket-config/refs/heads/main/lunin_1.conf
+```
+в буфер обмена.
 
 3. Далее на экране Config (второй экран) нажмите `+` в правом верхнем углу и вставьте скопированную ссылку из буфера обмена.
 
