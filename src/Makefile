@@ -7,7 +7,7 @@ CURRENT_DATE := $(shell date -u +"%H:%M %d/%m/%Y%n UTC")
 	echo "Converting $< to ../$@"; \
 	pandoc -V date="Создано $(CURRENT_DATE)" \
 	-V title="Настройка прокси для $$FILENAME" \
-	--filter=pandoc-citeproc \
+	--citeproc \
 	-F mermaid-filter \
 	--standalone \
 	--pdf-engine=xelatex \

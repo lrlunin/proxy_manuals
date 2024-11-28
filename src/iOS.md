@@ -46,7 +46,7 @@ https://raw.githubusercontent.com/lrlunin/shadowrocket-config/refs/heads/main/lu
 
 3. Далее на экране Config (второй экран) нажмите `+` в правом верхнем углу и вставьте скопированную ссылку из буфера обмена.
 
-4. В списке конфигураций появится пункт `lunin_1.conf`. Кликните на него посередине, **не на иконку "i"**.
+4. В списке конфигураций появится пункт `lunin_2.conf`. Кликните на него посередине, **не на иконку "i"**.
 
 \begin{center} 
 \includegraphics[width=0.4\textwidth]{imgs/shadowrocket_2.png}
